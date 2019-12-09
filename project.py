@@ -36,25 +36,22 @@ def regf():
         f1.write(dict['NUM'])
         f1.write(" ")
         f1.write(dict['AGE'])
-
+        f.close()
+        f1.close()
     main()
 
 def login():
 
-    user=input("give us your email adress:")
-    password=input("giveus the password:")
+    username = input("Please enter your username")
+    password = input("Please enter your password")
+    for line in open("user.txt","r").readlines(): # Read the lines
+        login_info = line.split() # Split on the space, and store the results in a list of two strings
+        if username == login_info[0] and password == login_info[1]:
+            print("Correct credentials!")
+            game()
+    print("Incorrect credentials.")
+    main()
 
-    if not os.path.isfile("user.txt"):
-        print("no such file exist")
-    else:
-      for line in open("user.txt","r").readlines():
-          login=line.split()
-          while user!=login[0] and password!=login[1]:
-              print("wrong cresentials")
-              user = input("give us your email adress: ")
-              password = input("giveus the password: ")
-          print("login success")
-          game()
 
 def game():
 
